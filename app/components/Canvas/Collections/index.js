@@ -1,31 +1,31 @@
-import { Plane, Transform } from 'ogl';
-import GSAP from 'gsap';
-import Prefix from 'prefix';
+import { Plane, Transform } from "ogl";
+import GSAP from "gsap";
+import Prefix from "prefix";
 
-import map from 'lodash/map';
+import map from "lodash/map";
 
-import Media from './Media';
+import Media from "./Media";
 
 export default class {
   constructor({ gl, scene, sizes, transition }) {
-    this.id = 'collections';
+    this.id = "collections";
 
     this.gl = gl;
     this.scene = scene;
     this.sizes = sizes;
     this.transition = transition;
 
-    this.transformPrefix = Prefix('transform');
+    this.transformPrefix = Prefix("transform");
 
     this.group = new Transform();
 
-    this.galleryElement = document.querySelector('.collections__gallery');
+    this.galleryElement = document.querySelector(".collections__gallery");
     this.galleryWrapperElement = document.querySelector( '.collections__gallery__wrapper' ); // prettier-ignore
 
-    this.titlesElement = document.querySelector('.collections__titles');
+    this.titlesElement = document.querySelector(".collections__titles");
 
     this.collectionsElements = document.querySelectorAll( '.collections__article' ); // prettier-ignore
-    this.collectionsElementsActive = 'collections__article--active';
+    this.collectionsElementsActive = "collections__article--active";
 
     this.mediasElements = document.querySelectorAll( '.collections__gallery__media' ); // prettier-ignore
 
@@ -152,7 +152,7 @@ export default class {
       }
     });
 
-    this.titlesElement.style[this.transformPrefix] = `translateY(-${ 25 * selectedCollection }%) translate(-50%, -50%) rotate(-90deg)`; // prettier-ignore
+    this.titlesElement.style[this.transformPrefix] = `translateY(-${ 25 * selectedCollection }%) translate(-50%, -50%) rotate(0deg)`; // prettier-ignore
   }
 
   /**
@@ -176,9 +176,9 @@ export default class {
     ] = `translateX(${this.scroll.current}px)`;
 
     if (this.scroll.last < this.scroll.current) {
-      this.scroll.direction = 'right';
+      this.scroll.direction = "right";
     } else if (this.scroll.last > this.scroll.current) {
-      this.scroll.direction = 'left';
+      this.scroll.direction = "left";
     }
 
     this.scroll.last = this.scroll.current;
