@@ -1,11 +1,16 @@
 .preloader {
   @extend %cover;
   @extend %center;
-  background: $color-contessa;
+  background: linear-gradient(
+    84.73deg,
+    #191919 11.83%,
+    #ff4438 39.2%,
+    #fffaff 97.84%
+  );
   color: $color-white;
   text-align: center;
 
-  z-index: z('preloader');
+  z-index: z("preloader");
 }
 .preloader__text {
   font-size: 0;
@@ -28,7 +33,7 @@
   left: 50%;
   transform: translateX(-50%);
 
-  @include media('<phone') {
+  @include media("<phone") {
     font-size: 2.5rem;
   }
 }

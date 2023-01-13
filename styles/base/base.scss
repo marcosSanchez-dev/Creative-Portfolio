@@ -2,7 +2,7 @@
 *::after,
 *::before {
   box-sizing: border-box;
-  user-select: none
+  user-select: none;
 }
 
 html {
@@ -15,7 +15,7 @@ html {
   background: $color-contessa;
   color: $color-white;
 
-  @include media('<phone') {
+  @include media("<phone") {
     font-size: calc($vw / 750px * 10px);
   }
 }
@@ -25,6 +25,11 @@ body {
   font-family: $font-suisse-bp;
   @extend %description-16;
   position: fixed;
+}
+
+.name__title {
+  font-family: $font-george-x;
+  min-width: max-content;
 }
 
 a {
@@ -52,18 +57,18 @@ img {
 }
 
 canvas {
-    pointer-events: none;
-    position: relative;
-    z-index: z('canvas')
+  pointer-events: none;
+  position: relative;
+  z-index: z("canvas");
 }
 
 .content {
   @extend %cover;
 }
 
-[data-animation='paragraph'],
-[data-animation='label'],
-[data-animation='title'] {
+[data-animation="paragraph"],
+[data-animation="label"],
+[data-animation="title"] {
   span {
     display: inline-block;
     overflow: hidden;

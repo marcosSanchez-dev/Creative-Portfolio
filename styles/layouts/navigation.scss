@@ -2,7 +2,7 @@
   @extend %cover;
 
   color: $color-white;
-  z-index: z('navigation');
+  z-index: z("navigation");
   position: fixed;
   pointer-events: none;
 }
@@ -21,12 +21,17 @@
     opacity: 0.5;
   }
 
-  @include media('<phone') {
+  @include media("<phone") {
     left: 5rem;
     top: 5rem;
     width: 27.9rem;
     height: 4.3rem;
   }
+}
+
+.name__title {
+  font-size: 2rem;
+  max-width: max-content;
 }
 .navigation__link__icon {
   display: block;
