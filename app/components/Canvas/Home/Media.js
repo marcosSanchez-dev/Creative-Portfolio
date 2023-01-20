@@ -1,8 +1,8 @@
-import { Mesh, Program } from 'ogl';
-import GSAP from 'gsap';
+import { Mesh, Program } from "ogl";
+import GSAP from "gsap";
 
-import vertex from 'shaders/home-vertex.glsl';
-import fragment from 'shaders/home-fragment.glsl';
+import vertex from "shaders/home-vertex.glsl";
+import fragment from "shaders/home-fragment.glsl";
 
 export default class Media {
   constructor({ element, geometry, gl, index, scene, sizes }) {
@@ -26,7 +26,7 @@ export default class Media {
   createTexture() {
     const image = this.element;
 
-    this.texture = window.TEXTURES[image.getAttribute('data-src')];
+    this.texture = window.TEXTURES[image.getAttribute("data-src")];
   }
 
   createProgram() {
