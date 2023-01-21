@@ -9,15 +9,19 @@ block content
       .home__titles
         each collection, index in collections
           if index === 0
-            a.home__titles__label(href='https://www.w3schools.com/' target='_blank')=`SoundCloud`
+            .home__titles__label
           else if index === 1
-            .home__titles__label=`Spotify`
+            .home__titles__label
+              i.fas.fa-code(aria-hidden='true') 
           else if index === 2
-            .home__titles__label=`Instagram`
+            .home__titles__label
+              i.fas.fa-bolt(aria-hidden='true') 
           else if index === 3
-            .home__titles__label=`Facebook`
+            .home__titles__label
+              i.fas.fa-music(aria-hidden='true') 
           else
-            .home__titles__label=`LinkedIn`
+            .home__titles__label
+
           .home__titles__title=collection.data.title
 
       .home__gallery
@@ -25,4 +29,15 @@ block content
           figure.home__gallery__media
             img.home__gallery__media__image(data-src=media.image.url alt=media.image.alt)
 
-      a.home__link(href=Link(home.data.collections))=home.data.button
+      a.home__link(href='#' target='_blank')=home.data.button
+      .social__icons__container
+        a(href='#')
+          i.fab.fa-soundcloud(aria-hidden='true') 
+        a(href='#')
+          i.fab.fa-spotify(aria-hidden='true') 
+        a(href='#')
+          i.fab.fa-linkedin(aria-hidden='true') 
+        a(href='#')
+          i.fab.fa-instagram(aria-hidden='true') 
+        a(href='#')
+          i.fab.fa-facebook(aria-hidden='true') 
