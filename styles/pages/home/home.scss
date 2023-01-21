@@ -71,6 +71,9 @@
 
 .home__titles {
   @extend %vertical-titles;
+  @include media("<phone") {
+    transform: translate(-50%, -50%) rotate(270deg);
+  }
 }
 
 .home__titles__label {
@@ -79,6 +82,9 @@
 
 .home__titles__title {
   @extend %vertical-titles__title;
+  @include media("<phone") {
+    font-size: 6rem;
+  }
 }
 
 .home__gallery {
@@ -188,28 +194,80 @@
   opacity: 1;
 }
 .home__link {
-  @extend %description-14;
-  border: 1px solid #42e2b8;
-  letter-spacing: 0.05;
-  width: 28.84em;
-  height: 6rem;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  text-transform: uppercase;
-  bottom: 5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
+  // @extend %description-14;
+  // letter-spacing: 0.05;
+  // width: 10em;
+  // height: 6rem;
+  // align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // position: absolute;
+  // text-transform: uppercase;
+  // bottom: 5rem;
+  // left: 50%;
+  // transform: translateX(-50%);
+  // z-index: 2;
 
-  @include media("<phone") {
-    bottom: 1rem;
-    width: 55rem;
-    height: 13.7rem;
-  }
+  // @include media("<phone") {
+  //   bottom: 1rem;
+  //   width: 30%;
+  //   height: 8%;
+  // }
+  display: none;
 }
 
 .home__link__icon {
-  @extend %cover;
+  // @extend %cover;
 }
+
+// .home__link:before {
+//   content: "";
+//   background: linear-gradient(
+//     45deg,
+//     #ff0000,
+//     #ff7300,
+//     #fffb00,
+//     #48ff00,
+//     #00ffd5,
+//     #002bff,
+//     #7a00ff,
+//     #ff00c8,
+//     #ff0000
+//   );
+//   position: absolute;
+//   top: -2px;
+//   left: -2px;
+//   background-size: 400%;
+//   z-index: -1;
+//   filter: blur(5px);
+//   -webkit-filter: blur(5px);
+//   width: calc(100% + 4px);
+//   height: calc(100% + 4px);
+//   animation: glowing-button-85 20s linear infinite;
+//   transition: opacity 0.3s ease-in-out;
+//   border-radius: 10px;
+// }
+
+// @keyframes glowing-button-85 {
+//   0% {
+//     background-position: 0 0;
+//   }
+//   50% {
+//     background-position: 400% 0;
+//   }
+//   100% {
+//     background-position: 0 0;
+//   }
+// }
+
+// .home__link:after {
+//   z-index: -1;
+//   content: "";
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   background: #191919;
+//   left: 0;
+//   top: 0;
+//   border-radius: 10px;
+// }

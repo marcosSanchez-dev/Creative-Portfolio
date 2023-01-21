@@ -8,7 +8,16 @@ block content
     .home__wrapper
       .home__titles
         each collection, index in collections
-          .home__titles__label=`${home.data.collection} ${Numbers(index)}`
+          if index === 0
+            a.home__titles__label(href='https://www.w3schools.com/' target='_blank')=`SoundCloud`
+          else if index === 1
+            .home__titles__label=`Spotify`
+          else if index === 2
+            .home__titles__label=`Instagram`
+          else if index === 3
+            .home__titles__label=`Facebook`
+          else
+            .home__titles__label=`LinkedIn`
           .home__titles__title=collection.data.title
 
       .home__gallery
