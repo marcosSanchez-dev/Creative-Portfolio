@@ -92,7 +92,7 @@ class App {
   async onChange({ url, push = true }) {
     // console.log("pathname: ", window.location.pathname);
     // console.log("window.location: ", window.location);
-    // console.log("url: ", url);
+    console.log("url: ", url);
     // console.log("url == /: ", url == "/");
     // console.log("url includes About: ", url.includes("/about"));
     // console.log("url pathname === Home: ", window.location.pathname == "/");
