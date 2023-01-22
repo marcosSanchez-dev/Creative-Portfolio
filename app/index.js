@@ -97,7 +97,7 @@ class App {
     // console.log("url includes About: ", url.includes("/about"));
     // console.log("url pathname === Home: ", window.location.pathname == "/");
 
-    if (url == "https://www.marcossanchez.dev/" || url.includes("/about")) {
+    if (url == "marcossanchez.dev" || url.includes("/about")) {
       this.canvas.onChangeStart(this.template, url);
 
       await this.page.hide();
