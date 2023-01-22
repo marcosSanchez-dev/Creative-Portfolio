@@ -1,12 +1,9 @@
 .preloader {
   @extend %cover;
   @extend %center;
-  background: linear-gradient(
-    84.73deg,
-    #191919 11.83%,
-    #ff4438 39.2%,
-    #fffaff 97.84%
-  );
+  background-color: #d9afd9;
+  background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+
   color: $color-white;
   text-align: center;
 
@@ -24,6 +21,8 @@
   span span {
     @extend %title-53;
   }
+
+  color: black;
 }
 .preloader__number {
   @extend %description-14;
@@ -36,8 +35,10 @@
   @include media("<phone") {
     font-size: 2.5rem;
   }
+  color: black;
 }
 
 .preloader__number__text {
   display: inline-block;
+  color: black;
 }

@@ -4,7 +4,7 @@ block variables
   - var template = 'home'
 
 block content 
-  .home(data-background="#191919" data-color="#f9f1e7")
+  .home(data-background="linear-gradient(to top, #09203f 0%, #537895 100%)" data-color="#f9f1e7")
     .home__wrapper
       .home__titles
         each collection, index in collections
@@ -31,13 +31,15 @@ block content
 
       a.home__link(href='#' target='_blank')=home.data.button
       .social__icons__container
-        a(href='#')
+        a.social__icons(href='#')
           i.fab.fa-soundcloud(aria-hidden='true') 
-        a(href='#')
+        a.social__icons(href='#')
           i.fab.fa-spotify(aria-hidden='true') 
-        a(href='#')
+        a.social__icons(href='#')
           i.fab.fa-linkedin(aria-hidden='true') 
-        a(href='#')
+        a.social__icons(href='#')
           i.fab.fa-instagram(aria-hidden='true') 
-        a(href='#')
+        a.social__icons(href='#')
           i.fab.fa-facebook(aria-hidden='true') 
+        a.social__icons(href='#')
+          i.fab.fa-github(aria-hidden='true') 

@@ -65,7 +65,7 @@
   //   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c97164",endColorstr="#c97164",GradientType=1);
   //   bottom: 0;
   // }
-  min-height: 500px;
+  min-height: 550px;
 }
 // .home__wrapper {
 // }
@@ -236,4 +236,10 @@
   @include media("<phone") {
     width: 90%;
   }
+}
+.social__icons {
+  transition: all 0.2s ease-in-out;
+}
+.social__icons:hover {
+  transform: scale(1.3);
 }
