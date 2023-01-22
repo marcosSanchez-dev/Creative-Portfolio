@@ -3,9 +3,16 @@
 
   // background: $color-cadet-blue;
   // color: $color-bright-grey;
+  & a {
+    font-weight: bolder;
+
+    &:hover {
+      border: 1px solid black;
+    }
+  }
 }
 .about__wrapper {
-    padding-top: 10rem
+  padding-top: 10rem;
 }
 
 .about__title {
@@ -15,7 +22,7 @@
   margin: 0 auto;
   text-align: center;
 
-  @include media('<phone') {
+  @include media("<phone") {
     max-width: 67.7rem;
   }
 }

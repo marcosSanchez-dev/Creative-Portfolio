@@ -90,14 +90,14 @@ class App {
   }
 
   async onChange({ url, push = true }) {
-    console.log("pathname: ", window.location.pathname);
-    console.log("window.location: ", window.location);
-    console.log("url: ", url);
-    console.log("url == /: ", url == "/");
-    console.log("url includes About: ", url.includes("/about"));
-    console.log("url pathname === Home: ", window.location.pathname == "/");
+    // console.log("pathname: ", window.location.pathname);
+    // console.log("window.location: ", window.location);
+    // console.log("url: ", url);
+    // console.log("url == /: ", url == "/");
+    // console.log("url includes About: ", url.includes("/about"));
+    // console.log("url pathname === Home: ", window.location.pathname == "/");
 
-    if (url == "http://localhost:8004/" || url.includes("/about")) {
+    if (url == "https://marcossanchez.site/" || url.includes("/about")) {
       this.canvas.onChangeStart(this.template, url);
 
       await this.page.hide();
