@@ -200,7 +200,7 @@ class App {
    */
 
   addEventListeners() {
-    window.addEventListener("mousewheel", this.onWheel.bind(this));
+    window.addEventListener("wheel", this.onWheel.bind(this));
 
     window.addEventListener("mousedown", this.onTouchDown.bind(this));
     window.addEventListener("mousemove", this.onTouchMove.bind(this));
@@ -209,6 +209,10 @@ class App {
     window.addEventListener("touchstart", this.onTouchDown.bind(this));
     window.addEventListener("touchmove", this.onTouchMove.bind(this));
     window.addEventListener("touchend", this.onTouchUp.bind(this));
+
+    window.addEventListener("pointerdown", this.onTouchDown.bind(this));
+    window.addEventListener("pointermove", this.onTouchMove.bind(this));
+    window.addEventListener("pointerup", this.onTouchUp.bind(this));
 
     window.addEventListener("resize", this.onResize.bind(this));
   }
