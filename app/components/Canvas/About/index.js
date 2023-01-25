@@ -1,17 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-return */
-import { Plane, Transform } from 'ogl';
-
-import GSAP from 'gsap';
-
-import map from 'lodash/map';
-
-import Gallery from './Gallery';
+import { Plane, Transform } from "ogl";
+import GSAP from "gsap";
+import map from "lodash/map";
+import Gallery from "./Gallery";
+import Prefix from "prefix";
 
 export default class {
   constructor({ gl, scene, sizes }) {
     this.gl = gl;
     this.sizes = sizes;
+    this.wrapper = document.querySelector(".about__wrapper");
 
     this.group = new Transform();
 
@@ -25,6 +24,8 @@ export default class {
     this.group.setParent(scene);
 
     this.show();
+
+    this.transformPrefix = Prefix("transform");
   }
 
   createGeometry() {
@@ -32,7 +33,7 @@ export default class {
   }
 
   createGalleries() {
-    this.galleriesElements = document.querySelectorAll('.about__gallery');
+    this.galleriesElements = document.querySelectorAll(".about__gallery");
 
     this.galleries = map(this.galleriesElements, (element, index) => {
       return new Gallery({
@@ -66,6 +67,10 @@ export default class {
   }
 
   onTouchMove(e) {
+    // console.log(this.wrapper);
+    // console.log("touchmove from about");
+    // console.log("e about class: ", e);
+    // this.wrapper.style[this.transformPrefix] = `translateY(-${150}px)`;
     map(this.galleries, (gallery) => gallery.onTouchMove(e));
   }
 

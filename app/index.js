@@ -153,17 +153,29 @@ class App {
     if (this.canvas && this.canvas.onTouchDown) {
       this.canvas.onTouchDown(e);
     }
+
+    if (this.page && this.page.onTouchDown) {
+      this.page.onTouchDown(e);
+    }
   }
 
   onTouchMove(e) {
     if (this.canvas && this.canvas.onTouchMove) {
       this.canvas.onTouchMove(e);
     }
+
+    if (this.page && this.page.onTouchMove) {
+      this.page.onTouchMove(e);
+    }
   }
 
   onTouchUp(e) {
     if (this.canvas && this.canvas.onTouchUp) {
       this.canvas.onTouchUp(e);
+    }
+
+    if (this.page && this.page.onTouchUp) {
+      this.page.onTouchUp(e);
     }
   }
 
@@ -175,6 +187,7 @@ class App {
     }
 
     if (this.page && this.page.onWheel) {
+      // console.log("onwheel: ", true);
       this.page.onWheel(normalizedWheel);
     }
   }

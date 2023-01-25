@@ -1,19 +1,19 @@
 /* eslint-disable no-unused-vars */
-import GSAP from 'gsap';
+import GSAP from "gsap";
 
-import Prefix from 'prefix';
+import Prefix from "prefix";
 
-import each from 'lodash/each';
-import map from 'lodash/map';
+import each from "lodash/each";
+import map from "lodash/map";
 
-import Title from 'animations/Title';
-import Paragraph from 'animations/Paragraph';
-import Label from 'animations/Label';
-import Highlight from 'animations/Highlight';
+import Title from "animations/Title";
+import Paragraph from "animations/Paragraph";
+import Label from "animations/Label";
+import Highlight from "animations/Highlight";
 
-import AsyncLoad from 'classes/AsyncLoad';
+import AsyncLoad from "classes/AsyncLoad";
 
-import { ColorsManager } from 'classes/Colors';
+import { ColorsManager } from "classes/Colors";
 
 export default class Page {
   constructor({ element, elements, id }) {
@@ -26,23 +26,37 @@ export default class Page {
       animationsParagraphs: '[data-animation="paragraph"]',
       animationsLabels: '[data-animation="label"]',
 
-      preloaders: '[data-src]',
+      preloaders: "[data-src]",
     };
 
     this.id = id;
 
-    this.transformPrefix = Prefix('transform');
+    this.transformPrefix = Prefix("transform");
   }
 
   create() {
     this.element = document.querySelector(this.selector);
+    // console.log("page class element: ", this.element);
     this.elements = {};
 
     this.scroll = {
       current: 0,
       target: 0,
+      start: 0,
       last: 0,
       limit: 0,
+    };
+
+    this.x = {
+      start: 0,
+      distance: 0,
+      end: 0,
+    };
+
+    this.y = {
+      start: 0,
+      distance: 0,
+      end: 0,
     };
 
     each(this.selectorChildren, (entry, key) => {
@@ -129,8 +143,8 @@ export default class Page {
   show(animation) {
     return new Promise((resolve) => {
       ColorsManager.change({
-        backgroundColor: this.element.getAttribute('data-background'),
-        color: this.element.getAttribute('data-color'),
+        backgroundColor: this.element.getAttribute("data-background"),
+        color: this.element.getAttribute("data-color"),
       });
 
       if (animation) {
@@ -181,7 +195,26 @@ export default class Page {
   }
 
   onWheel({ pixelY }) {
+    // console.log("wheel from page class");
     this.scroll.target += pixelY;
+  }
+
+  onTouchDown(e) {
+    this.isDown = true;
+
+    this.y.start = e.touches ? e.touches[0].clientY : e.clientY;
+    this.scroll.start = this.scroll.current;
+  }
+  onTouchUp(e) {
+    this.isDown = false;
+    this.y.end = e.touches ? e.touches[0].clientY : e.clientY;
+  }
+  onTouchMove(e) {
+    if (!this.isDown) return;
+    this.y.end = e.touches ? e.touches[0].clientY : e.clientY;
+    const distance = this.y.start - this.y.end;
+
+    this.scroll.target = this.scroll.start + distance;
   }
 
   // Loop

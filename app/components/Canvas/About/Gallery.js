@@ -1,14 +1,14 @@
-import GSAP from 'gsap';
+import GSAP from "gsap";
 
-import { Transform } from 'ogl';
-import map from 'lodash/map';
+import { Transform } from "ogl";
+import map from "lodash/map";
 
-import Media from './Media';
+import Media from "./Media";
 
 export default class Gallery {
   constructor({ element, geometry, index, gl, scene, sizes }) {
     this.element = element;
-    this.elementsWrapper = element.querySelector('.about__gallery__wrapper');
+    this.elementsWrapper = element.querySelector(".about__gallery__wrapper");
 
     this.geometry = geometry;
     this.index = index;
@@ -81,6 +81,8 @@ export default class Gallery {
     const distance = x.start - x.end;
 
     this.scroll.target = this.scroll.start - distance;
+
+    // this.scroll.target += y;
   }
 
   onTouchUp({ x, y }) {}
@@ -92,10 +94,10 @@ export default class Gallery {
     const y = scroll.current / window.innerHeight;
 
     if (this.scroll.current < this.scroll.target) {
-      this.direction = 'right';
+      this.direction = "right";
       this.scroll.velocity = -1;
     } else if (this.scroll.current > this.scroll.target) {
-      this.direction = 'left';
+      this.direction = "left";
       this.scroll.velocity = 1;
     }
 
@@ -107,13 +109,13 @@ export default class Gallery {
     map(this.medias, (media, index) => {
       const scaleX = media.mesh.scale.x / 2 + 0.25;
 
-      if (this.direction === 'left') {
+      if (this.direction === "left") {
         const x = media.mesh.position.x + scaleX;
 
         if (x < -this.sizes.width / 2) {
           media.extra += this.width;
         }
-      } else if (this.direction === 'right') {
+      } else if (this.direction === "right") {
         const x = media.mesh.position.x - scaleX;
 
         if (x > this.sizes.width / 2) {
