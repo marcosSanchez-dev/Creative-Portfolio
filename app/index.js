@@ -97,43 +97,47 @@ class App {
     // console.log("url includes About: ", url.includes("/about"));
     // console.log("url pathname === Home: ", window.location.pathname == "/");
 
-    this.canvas.onChangeStart(this.template, url);
+    if (url == "https://www.marcossanchez.dev/" || url.includes("/about")) {
+      this.canvas.onChangeStart(this.template, url);
 
-    await this.page.hide();
+      await this.page.hide();
 
-    const res = await window.fetch(url);
+      const res = await window.fetch(url);
 
-    if (res.status === 200) {
-      const html = await res.text();
-      const div = document.createElement("div");
+      if (res.status === 200) {
+        const html = await res.text();
+        const div = document.createElement("div");
 
-      if (push) {
-        window.history.pushState({}, "", url);
+        if (push) {
+          window.history.pushState({}, "", url);
+        }
+
+        div.innerHTML = html;
+
+        const divContent = div.querySelector(".content");
+
+        this.template = divContent.getAttribute("data-template");
+
+        this.navigation.onChange(this.template);
+
+        this.content.setAttribute("data-template", this.template);
+        this.content.innerHTML = divContent.innerHTML;
+
+        this.canvas.onChangeEnd(this.template);
+
+        this.page = this.pages[this.template];
+        this.page.create();
+
+        this.onResize();
+
+        this.page.show();
+
+        this.addLinkListeners();
+      } else {
+        console.error(`response status: ${res.status}`);
       }
-
-      div.innerHTML = html;
-
-      const divContent = div.querySelector(".content");
-
-      this.template = divContent.getAttribute("data-template");
-
-      this.navigation.onChange(this.template);
-
-      this.content.setAttribute("data-template", this.template);
-      this.content.innerHTML = divContent.innerHTML;
-
-      this.canvas.onChangeEnd(this.template);
-
-      this.page = this.pages[this.template];
-      this.page.create();
-
-      this.onResize();
-
-      this.page.show();
-
-      this.addLinkListeners();
     } else {
-      console.error(`response status: ${res.status}`);
+      window.open(`${url}`, "_blank");
     }
   }
 
