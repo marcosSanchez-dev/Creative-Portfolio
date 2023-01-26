@@ -34,7 +34,17 @@ export default class Navigation extends Component {
         autoAlpha: 0,
         duration: 0.75,
       });
+      GSAP.to(this.elements.links[0], {
+        autoAlpha: 1,
+        delay: 0.75,
+        duration: 0.75,
+      });
     } else {
+      GSAP.to(this.elements.links[0], {
+        autoAlpha: 0,
+        delay: 0.75,
+        duration: 0.75,
+      });
       GSAP.to(this.element, {
         color: COLOR_WHITE,
         duration: 1.5,
