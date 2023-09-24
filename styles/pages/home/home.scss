@@ -85,7 +85,6 @@
 }
 
 .home__titles__title {
-  color: blue !important;
   @extend %vertical-titles__title;
   @include media("<phone") {
     font-size: 6rem;

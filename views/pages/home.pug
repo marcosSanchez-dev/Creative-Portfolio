@@ -6,23 +6,23 @@ block variables
 block content 
   .home(data-background="linear-gradient(to top, #09203f 0%, #537895 100%)" data-color="#f9f1e7")
     .home__wrapper
-      .home__titles
-        each collection, index in collections
-          if index === 0
-            .home__titles__label
-          else if index === 1
-            .home__titles__label
-              i.fas.fa-code(aria-hidden='true') 
-          else if index === 2
-            .home__titles__label
-              i.fas.fa-bolt(aria-hidden='true') 
-          else if index === 3
-            .home__titles__label
-              i.fas.fa-music(aria-hidden='true') 
-          else
-            .home__titles__label
+      //- .home__titles
+      //-   each collection, index in collections
+      //-     if index === 0
+      //-       .home__titles__label
+      //-     else if index === 1
+      //-       .home__titles__label
+      //-         i.fas.fa-code(aria-hidden='true') 
+      //-     else if index === 2
+      //-       .home__titles__label
+      //-         i.fas.fa-bolt(aria-hidden='true') 
+      //-     else if index === 3
+      //-       .home__titles__label
+      //-         i.fas.fa-music(aria-hidden='true') 
+      //-     else
+      //-       .home__titles__label
 
-          .home__titles__title=collection.data.title
+      //-     .home__titles__title=collection.data.title
 
       .home__gallery
         each media in home.data.gallery
