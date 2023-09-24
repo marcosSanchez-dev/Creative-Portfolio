@@ -1,20 +1,22 @@
-import { Plane, Transform } from 'ogl';
+import { Plane, Transform } from "ogl";
 
-import GSAP from 'gsap';
+import GSAP from "gsap";
 
-import map from 'lodash/map';
+import map from "lodash/map";
 
-import Media from './Media';
+import Media from "./Media";
 
 export default class {
   constructor({ gl, scene, sizes }) {
     this.gl = gl;
     this.scene = scene;
     this.sizes = sizes;
+    this.autoScroll = true;
+    this.autoMoveSpeed = 0.5;
 
     this.group = new Transform();
 
-    this.galleryElement = document.querySelector('.home__gallery');
+    this.galleryElement = document.querySelector(".home__gallery");
     this.mediasElements = document.querySelectorAll( '.home__gallery__media__image' ); // prettier-ignore
 
     this.x = {
@@ -105,8 +107,8 @@ export default class {
   }
 
   onTouchDown({ x, y }) {
+    this.autoScroll = false;
     this.speed.target = 1;
-
     this.scrollCurrent.x = this.scroll.x;
     this.scrollCurrent.y = this.scroll.y;
   }
@@ -115,8 +117,8 @@ export default class {
     const xDistance = x.start - x.end;
     const yDistance = y.start - y.end;
 
-    this.x.target = this.scrollCurrent.x - xDistance;
-    this.y.target = this.scrollCurrent.y - yDistance;
+    this.x.target = -xDistance; // Cambiado para sumar/restar en lugar de establecer un valor fijo.
+    this.y.target = -yDistance;
   }
 
   onTouchUp({ x, y }) {
@@ -136,16 +138,19 @@ export default class {
     this.x.current = GSAP.utils.interpolate( this.x.current, this.x.target, this.x.lerp ); // prettier-ignore
     this.y.current = GSAP.utils.interpolate( this.y.current, this.y.target, this.y.lerp ); // prettier-ignore
 
+    this.x.target += this.autoMoveSpeed; // ajusta este valor según la velocidad que desees
+    this.y.target += this.autoMoveSpeed; // ajusta este valor según la velocidad que desees
+
     if (this.scroll.x < this.x.current) {
-      this.x.direction = 'right';
+      this.x.direction = "right";
     } else if (this.scroll.x > this.x.current) {
-      this.x.direction = 'left';
+      this.x.direction = "left";
     }
 
     if (this.scroll.y < this.y.current) {
-      this.y.direction = 'top';
+      this.y.direction = "top";
     } else if (this.scroll.y > this.y.current) {
-      this.y.direction = 'bottom';
+      this.y.direction = "bottom";
     }
 
     this.scroll.x = this.x.current;
@@ -154,7 +159,7 @@ export default class {
     map(this.medias, (media, index) => {
       const offsetX = this.sizes.width * 0.6;
       const scaleX = media.mesh.scale.x / 2;
-      if (this.x.direction === 'left') {
+      if (this.x.direction === "left") {
         const x = media.mesh.position.x + scaleX;
 
         if (x < -offsetX) {
@@ -162,7 +167,7 @@ export default class {
 
           media.mesh.rotation.z = GSAP.utils.random(-Math.PI * 0.03, Math.PI * 0.03); // prettier-ignore
         }
-      } else if (this.x.direction === 'right') {
+      } else if (this.x.direction === "right") {
         const x = media.mesh.position.x - scaleX;
 
         if (x > offsetX) {
@@ -175,7 +180,7 @@ export default class {
       const offsetY = this.sizes.height * 0.6;
       const scaleY = media.mesh.scale.y / 2;
 
-      if (this.y.direction === 'top') {
+      if (this.y.direction === "top") {
         const y = media.mesh.position.y + scaleY;
 
         if (y < -offsetY) {
@@ -183,7 +188,7 @@ export default class {
 
           media.mesh.rotation.z = GSAP.utils.random(-Math.PI * 0.03, Math.PI * 0.03); // prettier-ignore
         }
-      } else if (this.y.direction === 'bottom') {
+      } else if (this.y.direction === "bottom") {
         const y = media.mesh.position.y - scaleY;
 
         if (y > offsetY) {
