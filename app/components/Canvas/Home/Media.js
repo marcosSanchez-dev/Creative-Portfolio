@@ -36,6 +36,7 @@ export default class Media {
       uniforms: {
         uAlpha: { value: 0 },
         uSpeed: { value: 0 },
+        uTime: { value: 0 },
         uViewportSizes: { value: [this.sizes.width, this.sizes.height] },
         tMap: { value: this.texture },
       },
@@ -92,6 +93,10 @@ export default class Media {
     this.createBounds(sizes);
     this.updateX(scroll && scroll.x);
     this.updateY(scroll && scroll.y);
+    this.program.uniforms.uViewportSizes.value = [
+      this.sizes.width,
+      this.sizes.height,
+    ];
   }
 
   // Loop.
@@ -121,5 +126,6 @@ export default class Media {
     this.updateY(scroll.y);
 
     this.program.uniforms.uSpeed.value = speed;
+    this.program.uniforms.uTime.value += 0.01; // puedes ajustar la velocidad incrementando o disminuyendo este valor.
   }
 }

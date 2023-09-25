@@ -4,6 +4,7 @@ attribute vec3 position;
 attribute vec2 uv;
 
 uniform float uSpeed;
+uniform float uTime; // añadir tiempo
 uniform vec2 uViewportSizes;
 
 uniform mat4 modelViewMatrix;
@@ -16,7 +17,8 @@ void main() {
 
     vec4 newPosition = modelViewMatrix * vec4(position, 1.0);
 
-    newPosition.z -= (sin(newPosition.y / uViewportSizes.y * PI + PI / 2.0) + sin(newPosition.x / uViewportSizes.x * PI + PI / 2.0)) * abs(uSpeed);
+    // Movimiento ondulatorio con factor de tiempo
+    newPosition.z -= (sin(newPosition.y / uViewportSizes.y * PI * 2.0 + uTime) + sin(newPosition.x / uViewportSizes.x * PI * 2.0 + uTime)) * abs(uSpeed);
 
     gl_Position = projectionMatrix * newPosition;
 }
