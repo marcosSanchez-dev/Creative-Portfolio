@@ -51,9 +51,9 @@
   display: block;
   line-height: 1;
   font-weight: bolder;
-  font-size: 4.5rem;
+  font-size: 3.5rem;
 
   @include media("<phone") {
-    font-size: 5.5rem;
+    font-size: 3.5rem;
   }
 }
