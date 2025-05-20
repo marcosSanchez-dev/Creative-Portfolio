@@ -90,54 +90,50 @@ class App {
   }
 
   async onChange({ url, push = true }) {
-    // console.log("pathname: ", window.location.pathname);
-    // console.log("window.location: ", window.location);
-    // console.log("url: ", url);
-    // console.log("url == /: ", url == "/");
-    // console.log("url includes About: ", url.includes("/about"));
-    // console.log("url pathname === Home: ", window.location.pathname == "/");
+    // Parse URL relative to current page
+    const link = new URL(url, window.location.href);
 
-    if (url == "https://www.marcossanchez.dev/" || url.includes("/about")) {
-      this.canvas.onChangeStart(this.template, url);
+    // If it’s the same origin, do SPA navigation…
+    if (link.origin === window.location.origin) {
+      // let’s grab the new path
+      const path = link.pathname;
+
+      // start canvas transition
+      this.canvas.onChangeStart(this.template, path);
 
       await this.page.hide();
 
-      const res = await window.fetch(url);
-
+      const res = await fetch(path, { credentials: "same-origin" });
       if (res.status === 200) {
         const html = await res.text();
         const div = document.createElement("div");
-
-        if (push) {
-          window.history.pushState({}, "", url);
-        }
+        if (push) window.history.pushState({}, "", path);
 
         div.innerHTML = html;
-
         const divContent = div.querySelector(".content");
-
         this.template = divContent.getAttribute("data-template");
 
+        // update your Navigation instance
         this.navigation.onChange(this.template);
 
+        // swap in the new content
         this.content.setAttribute("data-template", this.template);
         this.content.innerHTML = divContent.innerHTML;
 
         this.canvas.onChangeEnd(this.template);
 
+        // re-create the page object
         this.page = this.pages[this.template];
         this.page.create();
-
         this.onResize();
-
         this.page.show();
-
         this.addLinkListeners();
       } else {
-        console.error(`response status: ${res.status}`);
+        console.error(`Fetch failed: ${res.status}`);
       }
     } else {
-      window.open(`${url}`, "_blank");
+      // any other origin → open in new tab
+      window.open(url, "_blank");
     }
   }
 
