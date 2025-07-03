@@ -9,8 +9,8 @@ export default class Navigation extends Component {
     super({
       element: ".navigation",
       elements: {
-        items: ".navigation__list__item",
-        links: ".navigation__list__link",
+        items: document.querySelectorAll(".navigation__list__item"),
+        links: document.querySelectorAll(".navigation__list__link"),
       },
     });
 
@@ -30,7 +30,7 @@ export default class Navigation extends Component {
         duration: 0.75,
       });
 
-      GSAP.to(this.elements.items[1], {
+      GSAP.to(this.elements.items[0], {
         autoAlpha: 0,
         duration: 0.75,
       });
@@ -55,7 +55,7 @@ export default class Navigation extends Component {
         duration: 0.75,
       });
 
-      GSAP.to(this.elements.items[1], {
+      GSAP.to(this.elements.items[0], {
         autoAlpha: 1,
         delay: 0.75,
         duration: 0.75,

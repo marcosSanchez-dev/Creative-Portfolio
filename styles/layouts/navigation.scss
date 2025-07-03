@@ -36,8 +36,14 @@
 .navigation__link__icon {
   display: block;
 }
+
 .navigation__list {
+  width: 100%;
+  position: relative; // ✅ importante para que absolute funcione dentro
+  display: flex;
+  justify-content: center;
 }
+
 .navigation__list__item {
   position: absolute;
   right: 4rem;
@@ -51,9 +57,43 @@
   display: block;
   line-height: 1;
   font-weight: bolder;
-  font-size: 3.5rem;
+  font-size: 5.5rem;
 
   @include media("<phone") {
-    font-size: 3.5rem;
+    font-size: 5.5rem;
+  }
+}
+
+// Aplica solo cuando estamos en la home
+.navigation__list__item {
+  text-align: center;
+  position: fixed;
+  top: 63%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  z-index: 10;
+}
+
+// El botón "Explore My Work"
+.navigation__list__link {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  border-radius: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: clamp(1.4rem, 6vw, 4.5rem);
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  text-align: center;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 1rem rgba(255, 255, 255, 0.3);
   }
 }
