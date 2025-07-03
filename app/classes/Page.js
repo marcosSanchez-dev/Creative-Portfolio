@@ -207,7 +207,8 @@ export default class Page {
   }
   onTouchUp(e) {
     this.isDown = false;
-    this.y.end = e.touches ? e.touches[0].clientY : e.clientY;
+    const touch = e.changedTouches?.[0] ?? e.touches?.[0];
+    this.y.end = touch ? touch.clientY : e.clientY;
   }
   onTouchMove(e) {
     if (!this.isDown) return;
