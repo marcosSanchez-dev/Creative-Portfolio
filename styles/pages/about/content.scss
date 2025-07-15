@@ -131,6 +131,20 @@
     height: 85.8rem;
     margin-left: 22rem;
     width: 60.8rem;
+    // border: 3px dashed blue;
+  }
+
+  .about__content--10 & {
+    height: 85.8rem;
+    margin-left: 22rem;
+    width: 60.8rem;
+    // border: 3px dashed red !important;
+  }
+
+  .about__content:nth-child(10) & {
+    height: 85.8rem;
+    margin-left: 22rem;
+    width: 60.8rem;
   }
 
   @include media("<=phone") {
@@ -159,8 +173,23 @@
     }
   }
 }
+
 .about__content__media__image {
   @extend %cover;
 
-  object-fit: cover;
+  object-fit: cover !important;
+}
+
+.about__content__media__image:nth-child(2) {
+  border: 2px solid blue !important;
+}
+
+.about__content__media {
+  .about__content--10 & {
+    height: 85.8rem;
+    margin-left: 22rem;
+    width: 60.8rem;
+    border: 3px dashed red !important;
+    flex-direction: unset;
+  }
 }
