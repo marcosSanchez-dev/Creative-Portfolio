@@ -180,16 +180,31 @@
   object-fit: cover !important;
 }
 
-.about__content__media__image:nth-child(2) {
-  border: 2px solid blue !important;
-}
-
 .about__content__media {
   .about__content--10 & {
     height: 85.8rem;
     margin-left: 22rem;
     width: 60.8rem;
-    border: 3px dashed red !important;
     flex-direction: unset;
+  }
+
+  .about__content--11 & {
+    height: 83.8rem;
+    margin-right: 22rem;
+    width: 60.8rem;
+    flex-direction: unset;
+  }
+
+  .about__content--12 & {
+    height: 85.8rem;
+    margin-left: 22rem;
+    width: 60.8rem;
+    flex-direction: unset;
+  }
+}
+
+.about__highlight__media {
+  .about__highlight & {
+    max-width: 450px;
   }
 }
