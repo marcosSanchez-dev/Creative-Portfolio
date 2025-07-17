@@ -1,7 +1,5 @@
 import GSAP from "gsap";
-
 import Component from "classes/Component";
-
 import { COLOR_BRIGHT_GREY, COLOR_WHITE } from "utils/color";
 
 export default class Navigation extends Component {
@@ -14,52 +12,80 @@ export default class Navigation extends Component {
       },
     });
 
+    this.template = template;
+    this.timeline = null;
     this.onChange(template);
   }
 
   onChange(template) {
-    if (template === "about") {
-      GSAP.to(this.element, {
-        color: COLOR_BRIGHT_GREY,
+    // Cancelar animaciones en curso
+    if (this.timeline) {
+      this.timeline.kill();
+    }
+
+    this.timeline = GSAP.timeline();
+    const isAboutPage = template === "about";
+    const firstItem = this.elements.items[0];
+    const firstLink = this.elements.links[0];
+    const color = isAboutPage ? COLOR_BRIGHT_GREY : COLOR_WHITE;
+
+    // Animaciones comunes
+    this.timeline.to(
+      this.element,
+      {
+        color,
         duration: 1.5,
-      });
+      },
+      0
+    );
 
-      GSAP.to(this.elements.items[0], {
-        autoAlpha: 0,
-        delay: 0.75,
-        duration: 0.75,
-      });
-
-      GSAP.to(this.elements.items[0], {
-        autoAlpha: 0,
-        duration: 0.75,
-      });
-      GSAP.to(this.elements.links[0], {
-        autoAlpha: 1,
-        delay: 0.75,
-        duration: 0.75,
-      });
-    } else {
-      GSAP.to(this.elements.links[0], {
-        autoAlpha: 0,
-        delay: 0.75,
-        duration: 0.75,
-      });
-      GSAP.to(this.element, {
-        color: COLOR_WHITE,
-        duration: 1.5,
-      });
-
-      GSAP.to(this.elements.items[0], {
-        autoAlpha: 0,
-        duration: 0.75,
-      });
-
-      GSAP.to(this.elements.items[0], {
-        autoAlpha: 1,
-        delay: 0.75,
-        duration: 0.75,
-      });
+    // Animaciones específicas para la página "about"
+    if (isAboutPage) {
+      this.timeline
+        .to(
+          firstItem,
+          {
+            autoAlpha: 0,
+            duration: 0.75,
+          },
+          0.75
+        )
+        .to(
+          firstLink,
+          {
+            autoAlpha: 1,
+            duration: 0.75,
+          },
+          0.75
+        );
+    }
+    // Animaciones para otras páginas
+    else {
+      this.timeline
+        .to(
+          firstLink,
+          {
+            autoAlpha: 0,
+            duration: 0.75,
+          },
+          0
+        )
+        .to(
+          firstItem,
+          {
+            autoAlpha: 0,
+            duration: 0.75,
+          },
+          0
+        )
+        .to(
+          firstItem,
+          {
+            autoAlpha: 1,
+            duration: 0.75,
+          },
+          0.75
+        );
     }
   }
 }
