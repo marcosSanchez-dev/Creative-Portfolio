@@ -12,7 +12,7 @@ block content
             figure.about__gallery__media
               img.about__gallery__media__image(data-src=media.image.url alt=media.image.alt)
 
-      each section,i in about.data.body
+      each section, i in about.data.body
         if section.slice_type == 'title'
           h2.about__title(data-animation="title")!=section.primary.text.replace(/\n/g, '<br>')
 
@@ -33,11 +33,20 @@ block content
               if section.primary.label
                 p.about__highlight__label(data-animation="label")=section.primary.label
 
-              h3.about__highlight__title(data-animation='highlight')=section.primary.title
-
-              each media in section.items
-                figure.about__highlight__media
-                  img.about__highlight__media__image(data-src=media.image.url alt=media.image.alt)
+              // Contenedor para medios y título (modificación clave)
+              .about__highlight__media-container
+                // Primera imagen
+                if section.items[0]
+                  figure.about__highlight__media
+                    img.about__highlight__media__image(data-src=section.items[0].image.url alt=section.items[0].image.alt)
+                
+                // Título (aparece entre las imágenes en móvil)
+                h3.about__highlight__title(data-animation='highlight' class=`about__highlight__title--${i + 1}`)=section.primary.title
+                
+                // Segunda imagen (si existe)
+                if section.items[1]
+                  figure.about__highlight__media
+                    img.about__highlight__media__image(data-src=section.items[1].image.url alt=section.items[1].image.alt)
 
         if section.slice_type == 'gallery'
           section.about__gallery
