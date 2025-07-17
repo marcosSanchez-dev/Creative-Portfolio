@@ -1,8 +1,6 @@
 .about {
   @extend %page;
 
-  // background: $color-cadet-blue;
-  // color: $color-bright-grey;
   & a {
     font-weight: bolder;
 
@@ -13,6 +11,10 @@
 }
 .about__wrapper {
   padding-top: 10rem;
+
+  @include media("<phone") {
+    padding-top: 5rem; // Reducir padding en móvil
+  }
 }
 
 .about__title {
@@ -23,6 +25,9 @@
   text-align: center;
 
   @include media("<phone") {
-    max-width: 67.7rem;
+    max-width: 90%; // Usar porcentaje para mejor ajuste
+    font-size: 9rem; // Reducir tamaño de fuente
+    line-height: 1.2; // Mejor espaciado
+    padding: 0 2rem; // Añadir padding lateral
   }
 }
